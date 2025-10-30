@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8"> <!-- Ensures all characters (like ₹, é, emojis) display correctly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes site responsive on mobile -->
+  <meta name="description" content="This is Roshan's project."> <!-- Short description, helps in Google search -->
+  <meta name="author" content="Roshan"> <!-- Your name -->
+  <title>My Project</title> <!-- Page title shown in browser tab -->
+</head>
+<style>
+
+  /*this makes the overall width of 600px and center it using margin*/
+  .overall{
+    width:800px;
+    margin:auto;
+  }
+  /*it is the heading*/
+   .JustDoit h1 {
+    font-family: Arial, sans-serif;
+    color: #2c3e50;
+    font-size: 54px;
+    text-align: center;
+  }
+  /* this make the box into centre of overall*/
+  .boxofmatter {
+  width: 600px; 
+  margin: 100px auto;
+  }
+  /*changing color*/
+  .color-changing-indicators{
+    list-style-type: none;
+    margin:20px;
+    overflow:hidden;
+    padding:0;
+    margin-right: 20px;
+    top:40px;
+  }
+  /*circles itself*/
+ /* circles itself */
+.colorcircle{
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left:20px;
+  /* REMOVE: background-color: #ff4040; */
+  float:none;
+}
+.colorcircle{
+  border-width: 2px;  /* Adds the width */
+  border-style: solid; /* Adds the style */
+  border-color: black; /* Your existing color */
+  float:right;
+}
+ .colorcircle:focus {
+    border: 2px solid #333; 
+    
+     border-width: 2px;
+    border-style: solid;
+    border-color: #333; 
+    
+    transition: border-color 0.2s ease;
+}
+ /* 1. Wrapper for Input and Button */
+.overall-input {
+    /* Set the group width and center it within .boxofmatter (600px wide) */
+    width: 470px;
+    margin: 0 auto;
+    position: relative; /* CRITICAL: Button is positioned relative to this */
+}
+/* 2. The Input Field */
+#TaskInput {
+    /* Corrected padding: 15px top/bottom, 30px left, 80px right (for button) */
+    padding: 15px 80px 15px 30px; 
+    width: 100%;
+    font-size: large;
+    border-radius: 15px;
+    border: 1px solid #ccc; /* Add a visible border */
+    box-sizing: border-box; /* Padding is included in the 100% width */
+
+}
+
+.overall-input button { 
+    position: absolute; 
+    right: 5px;       
+    top: 50%;         
+    transform: translateY(-50%); 
+    
+    padding: 12px 17px; 
+    border-radius: 10px;
+    z-index: 10;
+    
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#taskList{
+  margin: 20px auto 0 auto;
+  list-style-type: none;
+
+  justify-content: center;
+}
+
+.task-item {    
+    width: 500px; 
+   transition: opacity 0.4s ease-out, height 0.4s ease-out, padding 0.4s ease-out, margin 0.4s ease-out; 
+    overflow: hidden; 
+    display: block; 
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #f7f9fb;
+    border: 1px solid #dde6ed;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+   
+}
+.task-item.deleting {
+    opacity: 0;       /* Task fades away */
+    height: 0 !important; /* Force height to 0 immediately */
+    padding-top: 0;   /* Removes top padding smoothly */
+    padding-bottom: 0;/* Removes bottom padding smoothly */
+    margin-bottom: 0; /* Removes margin smoothly */
+}
+  .Delete{
+    position: absolute;
+    right: 5px;       
+    top: 50%;         
+    transform: translateY(-50%); 
+    transition:transform 0.3s ease;
+  }
+   .Delete:hover{
+  transform: translateY(-50%) scale(1.2); 
+}
+.Complete{
+    position: absolute;
+    right: 55px;       
+    top: 50%;         
+    transform: translateY(-50%); 
+    transition:transform 0.3s ease;
+  }
+   .Complete:hover{
+  transform: translateY(-50%) scale(1.2); 
+}
+ .displaytasks{
+   margin-top: 50px;
+ }
+ .check{
+  margin-top:30px;
+  margin-left:50px;
+  display:flex;
+  align-items: center;
+  gap:330px;
+ }
+ .completed button, .ongoing button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease-out;
+    background-color: transparent;
+}
+.completed button:hover, .ongoing button:hover {
+  transform: scale(1.15); 
+}
+hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  width:500px;
+}
+
+</style>
+<body>
+<ul class="color-changing-indicators">
+  <li><div id="ref-present" onclick="changeBackground(this)" class="colorcircle" 
+       style="background-image: linear-gradient(to bottom, #FAFAFA, #F5F5F5);" 
+       data-color="linear-gradient(to bottom, #FAFAFA, #F5F5F5)" tabindex="0"></div></li>
+       
+  <li><div id="ref-blue" onclick="changeBackground(this)" class="colorcircle" 
+       style="background-image: linear-gradient(to bottom, #F8FFFF, #F0FFFF);" 
+       data-color="linear-gradient(to bottom, #F8FFFF, #F0FFFF)" tabindex="0"></div></li>
+       
+  <li><div id="ref-green" onclick="changeBackground(this)" class="colorcircle" 
+       style="background-image: linear-gradient(to bottom, #FFFFF0, #FDFDF0);" 
+       data-color="linear-gradient(to bottom, #FFFFF0, #FDFDF0)" tabindex="0"></div></li>
+</ul>
+  <div class="overall">
+  <div class="boxofmatter">
+  <div class="JustDoit">
+  <h1> My To-Do List </h1>
+  </div>
+
+  <!-- inputing tasks from user -->
+  <div class="overall-input">
+  <input type="text" id="TaskInput" placeholder="Add a task..">
+  <button onclick="addTask()">Add</button>
+  </div>
+  <div class="check">
+    <div class="completed">
+      <button class="Completed" onclick="showCompleted()">Done</button>
+    </div>
+    <div class="ongoing">
+      <button class="ongoing" onclick="showTasks()">Current</button>
+    </div>
+  </div>
+<hr> 
+
+  <!--list of tasks will be dispalyed here-->
+  <div class="displaytasks">
+  <ul id="taskList"></ul>
+  </div>
+  </div>
+  </div>
+  <script src="scriptfortodo.js">
+console.log("Inline JS works!");
+alert("Inline JS works!");
+</script>
+</body>
+</html>
